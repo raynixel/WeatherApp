@@ -22,12 +22,19 @@ async function getWeatherByLocation() {
     });
 }
 
+// Event listener for the "Enter" key on the input field
+document.getElementById("cityInput").addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Prevent page refresh if inside a form
+        getWeather();
+    }
+});
+
 // This function fetches weather data from the API
 async function getWeather() {
 
     // Get city name from user input
-    const city = document.getElementById("cityInput").value;
-    currentCity = city;
+    const city = document.getElementById("cityInput").value.trim();
 
     // Call backend API
     const response = await fetch(`/api/weather/${city}`);
@@ -35,11 +42,15 @@ async function getWeather() {
 
     // If there's an error (e.g., city not found), display the error message
     if (data.error) {
-    document.getElementById("weatherResult").innerHTML = 
+    document.getElementById("weatherResult").innerHTML =
         `<p class="text-red-500">${data.error}</p>`;
     return;
-}
-    
+    }
+
+    currentCity = data.city;
+
+    document.getElementById("cityInput").value = data.city;
+
     // This part displays the weather data dynamically
     document.getElementById("weatherResult").innerHTML = `
     <div class="bg-gray-100 rounded-xl p-4 shadow">
@@ -94,14 +105,14 @@ async function saveFavorite() {
         alert("Please search for a city first");
         return;
     }
-    
+
     await fetch("/api/weather/favorite", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ city: currentCity })
-    });
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({city: currentCity})
+});
 
     // Reload favorites list after saving
     loadFavorites();
