@@ -65,7 +65,7 @@ WeatherApp/
 ├── data/
 │   └── favorites.json   # Saved favorite cities
 ├── server.js            # Express server entry point
-├── .env                 # Your API key (not committed to git)
+├── .env                 # API key (not committed to git)
 └── README.md
 ```
 
