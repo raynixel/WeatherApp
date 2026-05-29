@@ -21,13 +21,7 @@ git clone https://github.com/raynixel/WeatherApp.git
 cd WeatherApp
 ```
 
-### 2. Install dependencies
-
-```bash
-npm install
-```
-
-### 3. Set up your environment variables
+### 2. Set up your environment variables
 
 Create a `.env` file in the root of the project:
 
@@ -43,22 +37,13 @@ WEATHER_API_KEY=your_api_key_here
 
 > You can get a free API key by signing up at [openweathermap.org](https://openweathermap.org/api)
 
-### 4. Set up the data folder
-
-The app stores favorite cities in a JSON file. Create the required file:
-
-```bash
-mkdir data
-echo "[]" > data/favorites.json
-```
-
-### 5. Start the server
+### 3. Start the server
 
 ```bash
 node server.js
 ```
 
-### 6. Open the app
+### 4. Open the app
 
 Go to your browser and visit:
 
